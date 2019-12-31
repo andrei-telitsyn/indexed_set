@@ -10,15 +10,19 @@ operation.
 is valid until the moment when it is explicitly erased. Desctructor is called when the value is erased, and the node that carries it is 
 wiped and placed in 'deleted' queue. 
 
-So, in this case, this object deviates from behaviour of std::vecrtor, which does not allow 
+So, in this case, this object deviates from behaviour of std::vector, which does not allow 
 for 'holes' left in occupied memory.
 However, this container supports 'reserve', unlike original std::set, when the number of elements is known upfront of can be 'lucky-guessed'.
 
 
-I am using it to store big (or huge, dependging on how you look at it) arrays of 3d points and other POD types, where individual
+I am using it to store big (or huge, depending on how you look at it) arrays of 3d points and other POD types, where individual
 allocation/deallocation can be painful or not desired.
+If the items are only inserted, but never deleted, they can be accessed in range-type accessor/iterator (which is not part of this project).
+
 
 
 Underlying type T should be trivially copyable, because memcpy is used when the array needs to grow.
+
+
 
 
